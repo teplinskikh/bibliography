@@ -1,5 +1,21 @@
 <template>
   <div>
+    <div class="main-block">
+      <div class="main-block-content">
+        <ListContainer :books="books" :type-list="typeOfList" />
+        <div>
+          <el-select v-model="typeOfList" placeholder="Выберите тип списка">
+            <el-option
+              v-for="item in options" 
+              :key="item.value" 
+              :label="item.label" 
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </div>
+      </div>
+    </div>
     <RouterView />
     <ModalContainer />
     <BookForm />
@@ -8,18 +24,50 @@
 
 <script>
 import ModalContainer from "@/components/parts/ModalContainer";
+import ListContainer from "@/components/List.vue";
 import BookForm from "@/components/BookForm.vue";
 
 export default {
   components: {
     ModalContainer,
-    BookForm
+    BookForm,
+    ListContainer
+  },
+  data() {
+    return {
+      typeOfList: 'div',
+      options: [{
+        value: "ul",
+        label: "Простой список"
+      }, {
+        value: "ol",
+        label: "Нумерованный список"
+      }, {
+        value: "div",
+        label: "По умолчанию"
+      }],
+      books: [
+        { id: 1, title: "A", author: "a" },
+        { id: 2, title: "B", author: "b" },
+        { id: 3, title: "C", author: "c" },
+        { id: 4, title: "D", author: "d" }
+      ]
+    }
   }
 }
 </script>
 
 <style lang="less">
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+
+.main-block {
+  display: flex;
+  justify-content: center;
+
+  &-content {
+    background-color: @cBaseOne;
+  }
+}
 
 body {
   margin: 0;
