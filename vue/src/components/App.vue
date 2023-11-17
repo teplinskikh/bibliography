@@ -1,6 +1,27 @@
 <template>
   <div>
     <div class="main-block">
+      <div class="main-block-buttons">
+        <el-upload
+          action="#"
+          :limit="1"
+          :show-file-list="false"
+          :auto-upload="false"
+          :on-change="(file) => setFile(file)"
+        >
+          <el-button type="primary">
+            Импорт
+          </el-button>
+        </el-upload>
+        <a 
+          :href="downloadRef" 
+          class="el-button el-button--success" 
+          download="file.json" 
+          type="primary"
+        >
+         <span>Экспорт</span>
+        </a>
+      </div>
       <div class="main-block-content">
         <ListContainer :books="books" :type-list="typeOfList" />
         <div>
@@ -26,6 +47,7 @@
 import ModalContainer from "@/components/parts/ModalContainer";
 import ListContainer from "@/components/List.vue";
 import BookForm from "@/components/BookForm.vue";
+import {mapGetters, mapMutations} from "vuex";
 
 export default {
   components: {
@@ -33,7 +55,7 @@ export default {
     BookForm,
     ListContainer
   },
-  data() {
+  data () {
     return {
       typeOfList: 'div',
       options: [{
@@ -45,13 +67,30 @@ export default {
       }, {
         value: "div",
         label: "По умолчанию"
-      }],
-      books: [
-        { id: 1, title: "A", author: "a" },
-        { id: 2, title: "B", author: "b" },
-        { id: 3, title: "C", author: "c" },
-        { id: 4, title: "D", author: "d" }
-      ]
+      }]
+    }
+  },
+  computed: {
+    ...mapGetters('books', [
+      'getBooks'
+    ]),
+    books () {
+      return this.getBooks
+    },
+    downloadRef () {
+      return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.books));
+    } 
+  },
+  methods: {
+    ...mapMutations('books', [
+      'setBooks'
+    ]),
+    setFile (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.setBooks(JSON.parse(e.target.result));
+      }
+      reader.readAsText(file.raw);
     }
   }
 }
@@ -66,6 +105,15 @@ export default {
 
   &-content {
     background-color: @cBaseOne;
+  }
+
+  &-buttons {
+    display: flex;
+    height: fit-content;
+
+    & .el-button {
+      font-family: 'Times New Roman', Times, serif;
+    }
   }
 }
 

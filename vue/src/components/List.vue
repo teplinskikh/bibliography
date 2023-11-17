@@ -27,7 +27,7 @@ export default {
     }
   },
   computed: {
-    cssProps() {
+    cssProps () {
       return this.typeList == "div" ? {
         'display': 'block'
       } : {}
