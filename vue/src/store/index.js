@@ -1,5 +1,5 @@
 import modals from './modals'
-import books from './books'
+import books from "@/store/books";
 
 export default {
   namespaced: true,

@@ -10,6 +10,11 @@ const routes = [
     path: '/',
     name: RouteNames.HOME,
     component: HomePage
+  },
+  {
+    path: '/edit',
+    name: RouteNames.EDIT,
+    component: HomePage
   }
 ]
 

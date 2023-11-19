@@ -13,17 +13,21 @@
             Импорт
           </el-button>
         </el-upload>
-        <a 
-          :href="downloadRef" 
-          class="el-button el-button--success" 
-          download="file.json" 
+        <a
+          :href="downloadRef"
+          class="el-button el-button--success"
+          download="file.json"
           type="primary"
         >
          <span>Экспорт</span>
         </a>
       </div>
       <div class="main-block-content">
-        <ListContainer :books="books" :type-list="typeOfList" />
+        <ListContainer
+            :books="books"
+            :type-list="typeOfList"
+            :is-edit="$route.name===RouteNames.EDIT"
+        />
         <div>
           <el-select v-model="typeOfList" placeholder="Выберите тип списка">
             <el-option
@@ -37,9 +41,9 @@
         </div>
       </div>
     </div>
+    <BookForm />
     <RouterView />
     <ModalContainer />
-    <BookForm />
   </div>
 </template>
 
@@ -48,6 +52,7 @@ import ModalContainer from "@/components/parts/ModalContainer";
 import ListContainer from "@/components/List.vue";
 import BookForm from "@/components/BookForm.vue";
 import {mapGetters, mapMutations} from "vuex";
+import {RouteNames} from "@/router/routes";
 
 export default {
   components: {
@@ -71,6 +76,9 @@ export default {
     }
   },
   computed: {
+    RouteNames() {
+      return RouteNames
+    },
     ...mapGetters('books', [
       'getBooks'
     ]),
@@ -79,7 +87,7 @@ export default {
     },
     downloadRef () {
       return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.books));
-    } 
+    }
   },
   methods: {
     ...mapMutations('books', [
