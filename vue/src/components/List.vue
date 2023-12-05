@@ -1,20 +1,43 @@
 <template>
   <div>
-    <component :is="typeList">
+    <component :is="typeList" class="list-container">
       <li
-        v-for="book in books" 
-        :key="book.id" 
-        :style="cssProps"
+          v-for="book in books"
+          :key="book.id"
+          :style="cssProps"
       >
-        {{ book.title }}, {{ book.author }}
-
-        <el-button
-            v-if="isEdit"
-            type="danger"
-            icon="el-icon-delete"
-            circle
-            @click="() => deleteBook(book)"
-        />
+        <div class="list-container__item" v-if="isEdit">
+          <span class="list-container__item__text">
+            {{ book.title }}, {{ book.author }}
+          </span>
+          <div class="list-container__item__actions">
+            <div>
+              <ElButton
+                  v-if="isEdit"
+                  type="danger"
+                  icon="el-icon-delete"
+                  size="mini"
+                  circle
+                  class="list-container__item__actions__button"
+                  @click="() => deleteBook(book)"
+              />
+            </div>
+            <RouterLink :to="{ name: RouteNames.BOOK_EDIT, params: { id: book.id } } ">
+              <div class="list-container__item__actions__button">
+                <ElButton
+                    v-if="isEdit"
+                    type="primary"
+                    icon="el-icon-edit"
+                    size="mini"
+                    circle
+                />
+              </div>
+            </RouterLink>
+          </div>
+        </div>
+        <template v-else>
+          {{ book.title }}, {{ book.author }}
+        </template>
       </li>
     </component>
   </div>
@@ -22,6 +45,7 @@
 
 <script>
 import {mapActions} from "vuex";
+import {RouteNames} from "@/router/routes";
 
 export default {
   name: "ListContainer",
@@ -40,6 +64,9 @@ export default {
     }
   },
   computed: {
+    RouteNames () {
+      return RouteNames
+    },
     cssProps () {
       return this.typeList == "div" ? {
         'display': 'block'
@@ -56,3 +83,23 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="less">
+.list-container {
+  &__item {
+    display: inline-flex;
+
+    &__actions {
+      display: inline-flex;
+
+      &__button {
+        margin: 2px;
+      }
+    }
+
+    &__text {
+      min-width: 200px;
+    }
+  }
+}
+</style>

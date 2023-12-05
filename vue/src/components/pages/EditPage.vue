@@ -31,28 +31,20 @@
         </RouterLink>
       </div>
     </div>
-    <BookForm />
-    <section class="p-16">
-      Homepage
-      <button @click="() => openHelpModal()">Open modal</button>
-    </section>
   </PageLayout>
 </template>
 
 <script>
+
 import {mapGetters} from "vuex";
-import { helpModal } from "@/mixins/modals";
 import ListContainer from "@/components/List.vue";
-import BookForm from "@/components/BookForm.vue";
 import {RouteNames} from "@/router/routes";
 import PageLayout from "@/components/parts/PageLayout.vue";
 
 export default {
-  name: 'HomePage',
-  mixins: [helpModal],
+  name: 'EditPage',
   components: {
     PageLayout,
-    BookForm,
     ListContainer
   },
   data () {

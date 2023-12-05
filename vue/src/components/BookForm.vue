@@ -1,100 +1,197 @@
 <template>
   <div class="book-form">
     <div class="book-form__input">
-      <el-select v-model="form.type" placeholder="Выберите тип источника">
-        <el-option
+      <ElSelect v-model="form.type" placeholder="Выберите тип источника">
+        <ElOption
           v-for="item in typeOptions" 
           :key="item.value" 
           :label="item.label" 
           :value="item.value" 
         />
-      </el-select>
+      </ElSelect>
     </div>
-    <div v-if="form.type != 'web' && form.type != ''" class="book-form__input">
-      <el-input v-model="form.author" placeholder="Автор" />
+    <div v-if="form.type !== 'web' && form.type !== ''" class="book-form__input">
+      <span class="book-form__input__label">Автор</span>
+      <ElInput
+          v-model="form.author"
+          placeholder="Укажите автора"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type != 'web' && form.type != ''" class="book-form__input">
-      <el-input v-model="form.initials" placeholder="Инициалы автора" />
+    <div v-if="form.type !== 'web' && form.type !== ''" class="book-form__input">
+      <span class="book-form__input__label">Инициалы автора</span>
+      <ElInput
+          v-model="form.initials"
+          placeholder="Укажите инициалы автора"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type != ''" class="book-form__input">
-      <el-input v-model="form.title" placeholder="Заглавие" />
+    <div v-if="form.type !== ''" class="book-form__input">
+      <span class="book-form__input__label">Заглавие</span>
+      <ElInput
+          v-model="form.title"
+          placeholder="Введите заглавие"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'book' || form.type == 'abstract' || form.type == 'articleBook'" class="book-form__input">
-      <el-input v-model="form.city" placeholder="Город" />
+    <div v-if="form.type === 'book' || form.type === 'abstract' || form.type === 'articleBook'" class="book-form__input">
+      <span class="book-form__input__label">Город</span>
+      <ElInput
+          v-model="form.city"
+          placeholder="Укажите город"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'book' || form.type == 'articleBook'" class="book-form__input">
-      <el-input v-model="form.publisher" placeholder="Издательство" />
+    <div v-if="form.type === 'book' || form.type === 'articleBook'" class="book-form__input">
+      <span class="book-form__input__label">Издательство</span>
+      <ElInput
+          v-model="form.publisher"
+          placeholder="Укажите издательство"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type != 'web' && form.type != ''" class="book-form__input">
-      <el-input v-model="form.year" placeholder="Год издания" />
+    <div v-if="form.type !== 'web' && form.type !== ''" class="book-form__input">
+      <span class="book-form__input__label">Год издания</span>
+      <ElInput
+          v-model="form.year"
+          placeholder="Введите год издания"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'articleBook' || form.type == 'articleMagazine'" class="book-form__input">
-      <el-input v-model="form.pages" placeholder="Страницы" />
+    <div v-if="form.type === 'articleBook' || form.type === 'articleMagazine'" class="book-form__input">
+      <span class="book-form__input__label">Страницы</span>
+      <ElInput
+          v-model="form.pages"
+          placeholder="Укажите количество страницы"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'book' || form.type == 'abstract'" class="book-form__input">
-      <el-input v-model="form.pagesNum" placeholder="Количество страниц" />
+    <div v-if="form.type === 'book' || form.type === 'abstract'" class="book-form__input">
+      <span class="book-form__input__label">Количество страниц</span>
+      <ElInput
+          v-model="form.pagesNum"
+          placeholder="Укажите количество страницы"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'book'" class="book-form__input">
-      <el-input v-model="form.isbn" placeholder="ISBN" />
+    <div v-if="form.type === 'book'" class="book-form__input">
+      <span class="book-form__input__label">ISBN</span>
+      <ElInput
+          v-model="form.isbn"
+          placeholder="ISBN"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'book'" class="book-form__input">
-      <el-input v-model="form.editionNum" placeholder="Номер издания" />
+    <div v-if="form.type === 'book'" class="book-form__input">
+      <span class="book-form__input__label">Номер издания</span>
+      <ElInput
+          v-model="form.editionNum"
+          placeholder="Укажите номер издания"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'book'" class="book-form__input">
-      <el-input v-model="form.typeBook" placeholder="Тип книги" />
+    <div v-if="form.type === 'book'" class="book-form__input">
+      <span class="book-form__input__label">Тип книги</span>
+      <ElInput
+          v-model="form.typeBook"
+          placeholder="Тип книги"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'abstract'" class="book-form__input">
-      <el-input v-model="form.authorTitle" placeholder="Научное звание автора" />
+    <div v-if="form.type === 'abstract'" class="book-form__input">
+      <span class="book-form__input__label">Научное звание автора</span>
+      <ElInput
+          v-model="form.authorTitle"
+          placeholder="Укажите научное звание автора"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'abstract'" class="book-form__input">
-      <el-input v-model="form.supervisor" placeholder="Научный руководитель" />
+    <div v-if="form.type === 'abstract'" class="book-form__input">
+      <span class="book-form__input__label">Научный руководитель</span>
+      <ElInput
+          v-model="form.supervisor"
+          placeholder="Научный руководитель"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'abstract'" class="book-form__input">
-      <el-input v-model="form.university" placeholder="Университет" />
+    <div v-if="form.type === 'abstract'" class="book-form__input">
+      <span class="book-form__input__label">Университет</span>
+      <ElInput
+          v-model="form.university"
+          placeholder="Университет"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'articleMagazine'" class="book-form__input">
-      <el-input v-model="form.magazineNum" placeholder="Номер выпуска журнала" />
+    <div v-if="form.type === 'articleMagazine'" class="book-form__input">
+      <span class="book-form__input__label">Номер выпуска журнала</span>
+      <ElInput
+          v-model="form.magazineNum"
+          placeholder="Укажите номер выпуска журнала"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'web' || form.type == 'articleWeb'" class="book-form__input">
-      <el-input v-model="form.url" placeholder="URL сайта" />
+    <div v-if="form.type === 'web' || form.type === 'articleWeb'" class="book-form__input">
+      <span class="book-form__input__label">URL сайта</span>
+      <ElInput
+          v-model="form.url"
+          placeholder="URL сайта"
+          class="book-form__input__text"
+      />
     </div>
-    <div v-if="form.type == 'web' || form.type == 'articleWeb'" class="book-form__input">
-      <el-input v-model="form.viewDate" placeholder="Дата обращения" />
+    <div v-if="form.type === 'web' || form.type === 'articleWeb'" class="book-form__input">
+      <span class="book-form__input__label">Дата обращения</span>
+      <ElInput
+          v-model="form.viewDate"
+          placeholder="Дата обращения"
+          class="book-form__input__text"
+      />
     </div>
-    <el-button type="primary" @click="() => save()">Сохранить</el-button>
+    <ElButton
+        v-if="form.type !== ''"
+        type="primary"
+        icon="save"
+        @click="() => save()"
+    >
+      Сохранить
+    </ElButton>
   </div>
 </template>
 
 <script>
-import {mapMutations} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
+
+const emptyForm = {
+  author: '',
+  initials: '',
+  title: '',
+  city: '',
+  publisher: '',
+  year: '',
+  pages: '',
+  pagesNum: '',
+  isbn: '',
+  editionNum: '',
+  typeBook: '',
+  authorTitle: '',
+  supervisor: '',
+  university: '',
+  magazineNum: '',
+  url: '',
+  viewDate: '',
+  type: ''
+}
 
 export default {
   name: 'BookForm',
   data () {
     return {
-      form: {
-        author: '',
-        initials: '',
-        title: '',
-        city: '',
-        publisher: '',
-        year: '',
-        pages: '',
-        pegesNum: '',
-        isbn: '',
-        editionNum: '',
-        typeBook: '',
-        authorTitle: '',
-        supervisor: '',
-        university: '',
-        magazineNum: '',
-        url: '',
-        viewDate: '',
-        type: ''
-      }
+      form: { ...emptyForm }
     }
   },
   computed: {
+    ...mapGetters('books', [
+      'getBook',
+    ]),
     typeOptions () {
       return [{
         value: "book",
@@ -117,12 +214,39 @@ export default {
       }]
     }
   },
+  mounted () {
+    // Перезагружать форму после обновления страницы значениями из хранилища
+    const id = this.$route.params.id
+    this.updateFormWithBook(id)
+  },
   methods: {
     ...mapMutations('books', [
-      'addBook'
+      'addBook',
+      'editBook'
     ]),
     save () {
-      this.addBook({...this.form});
+      const id = this.$route.params.id
+      if (id !== undefined) {
+        this.editBook(id)
+      } else {
+        this.addBook({...this.form});
+      }
+    },
+    loadBook(id) {
+      return this.getBook(id)
+    },
+    // Обновить форму значениями книги с bookId
+    updateFormWithBook(bookId) {
+      if (bookId !== undefined) {
+        const book = this.loadBook(Number(bookId))
+        if (book !== undefined) {
+          this.form = book
+          return
+        }
+      }
+      // Если книга не найдена, но требуется обновить форму,
+      // то она обновляется дефолтным значением
+      this.form = { ...emptyForm }
     }
   }
 }
@@ -132,9 +256,20 @@ export default {
 .book-form {
   padding: 3px;
   margin-bottom: 5px;
+  text-align: center;
 
   &__input {
+    text-align: center;
     margin-bottom: 5px;
+
+    &__label {
+      display: flex;
+      place-content: center;
+    }
+
+    &__text {
+      width: 500px;
+    }
   }
 }
 </style>

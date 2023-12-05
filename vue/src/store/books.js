@@ -37,7 +37,7 @@ export default {
     },
     // Редактирование книги
     editBook: (state, payload) => {
-      state.books = state.books.map((book) => book.id == book.id ? payload : book)
+      state.books = state.books.map((book) => book.id == payload.id ? payload : book)
       syncStateBooks(state)
     }
   },
