@@ -5,6 +5,7 @@ import { RouteNames } from './routes'
 import EditPage from "@/components/pages/EditPage.vue";
 import EditBookPage from "@/components/pages/EditBookPage.vue";
 import SettingsPage from "@/components/pages/SettingsPage.vue";
+import AddBookPage from "@/components/pages/AddBookPage.vue";
 
 Vue.use(VueRouter)
 
@@ -13,6 +14,11 @@ const routes = [
     path: '/',
     name: RouteNames.HOME,
     component: HomePage
+  },
+  {
+    path: '/add',
+    name: RouteNames.BOOK_ADD,
+    component: AddBookPage
   },
   {
     path: '/edit',

@@ -1,40 +1,21 @@
 <template>
   <PageLayout>
-    <div class="main-block">
+    <section>
       <div>
-        <div class="main-block-content">
-          <ListContainer
-              :books="books"
-              :type-list="typeOfList"
-              :is-edit="$route.name===RouteNames.EDIT"
+        <ElSelect v-model="typeOfList" placeholder="Выберите тип списка">
+          <ElOption
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
           />
-          <div>
-            <ElSelect v-model="typeOfList" placeholder="Выберите тип списка">
-              <ElOption
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-              />
-            </ElSelect>
-          </div>
-        </div>
-        <RouterLink v-if="$route.name === RouteNames.HOME" :to="{ name: RouteNames.EDIT } ">
-          <div class="main-block-navigation">
-            <ElButton type="primary" class="main-block-navigation">Режим редактирования</ElButton>
-          </div>
-        </RouterLink>
-        <RouterLink v-if="$route.name !== RouteNames.HOME" :to="{ name: RouteNames.HOME } ">
-          <div class="main-block-navigation">
-            <ElButton type="primary" class="main-block-navigation">На главную</ElButton>
-          </div>
-        </RouterLink>
+        </ElSelect>
       </div>
-    </div>
-    <BookForm />
-    <section class="p-16">
-      Homepage
-      <button @click="() => openHelpModal()">Open modal</button>
+      <ListContainer
+        :books="books"
+        :type-list="typeOfList"
+        :is-edit="$route.name===RouteNames.EDIT"
+      />
     </section>
   </PageLayout>
 </template>
@@ -42,8 +23,7 @@
 <script>
 import {mapGetters} from "vuex";
 import { helpModal } from "@/mixins/modals";
-import ListContainer from "@/components/List.vue";
-import BookForm from "@/components/BookForm.vue";
+import ListContainer from "@/components/parts/biblio/List.vue";
 import {RouteNames} from "@/router/routes";
 import PageLayout from "@/components/parts/PageLayout.vue";
 
@@ -52,12 +32,11 @@ export default {
   mixins: [helpModal],
   components: {
     PageLayout,
-    BookForm,
     ListContainer
   },
   data () {
     return {
-      typeOfList: 'div'
+      typeOfList: 'ol'
     }
   },
   computed: {
@@ -72,14 +51,14 @@ export default {
     },
     options () {
       return [{
-        value: "ul",
-        label: "Простой список"
-      }, {
         value: "ol",
         label: "Нумерованный список"
       }, {
+        value: "ul",
+        label: "Простой список"
+      }, {
         value: "div",
-        label: "По умолчанию"
+        label: "Блочный список"
       }]
     }
   }

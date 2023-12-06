@@ -1,7 +1,7 @@
 <template>
   <PageLayout>
-    <div class="main-block">
-      <div class="main-block-buttons">
+    <section>
+      <div class="settings">
         <ElUpload
             action="#"
             :limit="1"
@@ -14,28 +14,31 @@
           </ElButton>
         </ElUpload>
         <a
-            :href="downloadRef"
-            class="el-button el-button--success"
-            download="file.json"
-            type="primary"
+          :href="downloadRef"
+          download="file.json"
         >
-          <span>Экспорт</span>
+          <ElButton type="success">
+            Экспорт
+          </ElButton>
         </a>
       </div>
-    </div>
+    </section>
   </PageLayout>
 </template>
 
 <script>
-import {mapMutations} from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import PageLayout from "@/components/parts/PageLayout.vue";
 
 export default {
   name: 'SettingsPage',
   components: {PageLayout},
   computed: {
+    ...mapGetters('books', [
+      'getBooks'
+    ]),
     downloadRef () {
-      return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.books));
+      return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.getBooks));
     }
   },
   methods: {
@@ -52,3 +55,11 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.settings {
+  padding: 12px;
+  display: flex;
+  gap: 6px;
+}
+</style>

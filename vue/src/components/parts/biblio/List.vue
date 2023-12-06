@@ -1,38 +1,34 @@
 <template>
-  <div>
-    <component :is="typeList" class="list-container">
+  <div class="list-container__wrapper">
+    <Component :is="typeList" class="list-container">
       <li
-          v-for="book in books"
-          :key="book.id"
-          :style="cssProps"
+        v-for="book in books"
+        :key="book.id"
+        :style="cssProps"
       >
-        <div class="list-container__item" v-if="isEdit">
+        <div v-if="isEdit" class="list-container__item">
           <span class="list-container__item__text">
             {{ book.title }}, {{ book.author }}
           </span>
           <div class="list-container__item__actions">
-            <div>
-              <ElButton
-                  v-if="isEdit"
-                  type="danger"
-                  icon="el-icon-delete"
-                  size="mini"
-                  circle
-                  class="list-container__item__actions__button"
-                  @click="() => deleteBook(book)"
-              />
-            </div>
             <RouterLink :to="{ name: RouteNames.BOOK_EDIT, params: { id: book.id } } ">
               <div class="list-container__item__actions__button">
                 <ElButton
-                    v-if="isEdit"
-                    type="primary"
-                    icon="el-icon-edit"
-                    size="mini"
-                    circle
+                  type="primary"
+                  icon="el-icon-edit"
+                  size="mini"
+                  circle
                 />
               </div>
             </RouterLink>
+            <ElButton
+              type="danger"
+              icon="el-icon-delete"
+              size="mini"
+              circle
+              class="list-container__item__actions__button"
+              @click="() => deleteBook(book)"
+            />
           </div>
         </div>
         <template v-else>
@@ -86,19 +82,23 @@ export default {
 
 <style scoped lang="less">
 .list-container {
+  &__wrapper {
+    padding: 10px;
+  }
+
   &__item {
-    display: inline-flex;
+    display: flex;
+
+    &__text {
+      flex: 1;
+    }
 
     &__actions {
-      display: inline-flex;
+      display: flex;
 
       &__button {
         margin: 2px;
       }
-    }
-
-    &__text {
-      min-width: 200px;
     }
   }
 }
