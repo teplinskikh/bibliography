@@ -1,46 +1,55 @@
 <template>
   <div class="list-container__wrapper">
     <Component :is="typeList" class="list-container">
-      <li
-        v-for="book in books"
-        :key="book.id"
-        :style="cssProps"
-      >
-        <div v-if="isEdit" class="list-container__item">
-          <span class="list-container__item__text">
-            {{ book.title }}, {{ book.author }}
-          </span>
-          <div class="list-container__item__actions">
-            <RouterLink :to="{ name: RouteNames.BOOK_EDIT, params: { id: book.id } } ">
-              <div class="list-container__item__actions__button">
-                <ElButton
-                  type="primary"
-                  icon="el-icon-edit"
+      <template v-for="book in books">
+        <li
+            v-if="book.configIsVisible || isEdit"
+            :key="book.id"
+            :style="cssProps"
+        >
+          <div v-if="isEdit" class="list-container__item">
+            <span class="list-container__item__text">
+              {{ book.title }}, {{ book.authors }}
+            </span>
+            <div class="list-container__item__actions">
+              <ElButton
+                  :type="book.configIsVisible ? 'primary': 'danger'"
+                  icon="el-icon-view"
                   size="mini"
                   circle
+                  class="list-container__item__actions__button"
+                  @click="() => hideBook(book)"
+              />
+              <RouterLink :to="{ name: RouteNames.BOOK_EDIT, params: { id: book.id } } ">
+                <ElButton
+                    type="primary"
+                    icon="el-icon-edit"
+                    size="mini"
+                    circle
+                    class="list-container__item__actions__button"
                 />
-              </div>
-            </RouterLink>
-            <ElButton
-              type="danger"
-              icon="el-icon-delete"
-              size="mini"
-              circle
-              class="list-container__item__actions__button"
-              @click="() => deleteBook(book)"
-            />
+              </RouterLink>
+              <ElButton
+                  type="danger"
+                  icon="el-icon-delete"
+                  size="mini"
+                  circle
+                  class="list-container__item__actions__button"
+                  @click="() => deleteBook(book)"
+              />
+            </div>
           </div>
-        </div>
-        <template v-else>
-          {{ book.title }}, {{ book.author }}
-        </template>
-      </li>
+          <template v-else>
+            {{ book.title }}, {{ book.authors }}
+          </template>
+        </li>
+      </template>
     </component>
   </div>
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapMutations} from "vuex";
 import {RouteNames} from "@/router/routes";
 
 export default {
@@ -73,10 +82,17 @@ export default {
     ...mapActions('books', [
       'removeBook'
     ]),
+    ...mapMutations('books', [
+      'editBook'
+    ]),
     deleteBook (book) {
       this.removeBook(book.id)
+    },
+    hideBook (book) {
+      book.configIsVisible = !book.configIsVisible
+      this.editBook(book)
     }
-  },
+  }
 }
 </script>
 

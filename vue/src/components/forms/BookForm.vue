@@ -11,20 +11,16 @@
       </ElSelect>
     </div>
     <div v-if="form.type !== 'web' && form.type !== ''" class="book-form__input">
-      <span class="book-form__input__label">Автор</span>
-      <ElInput
-          v-model="form.author"
-          placeholder="Укажите автора"
-          class="book-form__input__text"
-      />
-    </div>
-    <div v-if="form.type !== 'web' && form.type !== ''" class="book-form__input">
-      <span class="book-form__input__label">Инициалы автора</span>
-      <ElInput
-          v-model="form.initials"
-          placeholder="Укажите инициалы автора"
-          class="book-form__input__text"
-      />
+      <div v-for="(item, index) in form.authors" :key="index" >
+        <AuthorForm v-model="form.authors[index]" :index="index" />
+      </div>
+      <ElButton
+          type="primary"
+          icon="save"
+          @click="() => addAuthor()"
+      >
+        Добавить автора
+      </ElButton>
     </div>
     <div v-if="form.type !== ''" class="book-form__input">
       <span class="book-form__input__label">Заглавие</span>
@@ -159,10 +155,15 @@
 
 <script>
 import {mapGetters, mapMutations} from "vuex";
+import AuthorForm from "@/components/forms/AuthorForm.vue";
 
 const emptyForm = {
-  author: '',
-  initials: '',
+  authors: [
+    {
+      name: "",
+      initials: ""
+    }
+  ],
   title: '',
   city: '',
   publisher: '',
@@ -178,11 +179,13 @@ const emptyForm = {
   magazineNum: '',
   url: '',
   viewDate: '',
-  type: ''
+  type: '',
+  configIsVisible: true
 }
 
 export default {
   name: 'BookForm',
+  components: {AuthorForm},
   data () {
     return {
       form: { ...emptyForm }
@@ -247,12 +250,18 @@ export default {
       // Если книга не найдена, но требуется обновить форму,
       // то она обновляется дефолтным значением
       this.form = { ...emptyForm }
+    },
+    addAuthor () {
+      this.form.authors.push({
+        name: '',
+        initials: ''
+      })
     }
   }
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 .book-form {
   padding: 3px;
   margin-bottom: 5px;
@@ -269,6 +278,7 @@ export default {
 
     &__text {
       width: 500px;
+      padding-bottom: 5px;
     }
   }
 }
