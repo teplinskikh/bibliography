@@ -95,6 +95,22 @@
       />
     </div>
     <div v-if="form.type === 'abstract'" class="book-form__input">
+      <span class="book-form__input__label">Полные инициалы автора</span>
+      <ElInput
+          v-model="form.fullInitials"
+          placeholder="Укажите полные инициалы автора"
+          class="book-form__input__text"
+      />
+    </div>
+    <div v-if="form.type === 'abstract'" class="book-form__input">
+      <span class="book-form__input__label">Научная специальность</span>
+      <ElInput
+          v-model="form.scientificSpecialty"
+          placeholder="Укажите научную специальность"
+          class="book-form__input__text"
+      />
+    </div>
+    <div v-if="form.type === 'abstract'" class="book-form__input">
       <span class="book-form__input__label">Научное звание автора</span>
       <ElInput
           v-model="form.authorTitle"
@@ -115,6 +131,14 @@
       <ElInput
           v-model="form.university"
           placeholder="Университет"
+          class="book-form__input__text"
+      />
+    </div>
+    <div v-if="form.type == 'articleBook' || form.type == 'articleMagazine' || form.type == 'articleWeb'" class="book-form__input">
+      <span class="book-form__input__label">Название источника сатьи</span>
+      <ElInput
+          v-model="form.originName"
+          placeholder="Укажите название источника статьи"
           class="book-form__input__text"
       />
     </div>
@@ -176,6 +200,9 @@ const emptyForm = {
   authorTitle: '',
   supervisor: '',
   university: '',
+  fullInitials: '',
+  scientificSpecialty: '',
+  originName: '',
   magazineNum: '',
   url: '',
   viewDate: '',
@@ -207,7 +234,7 @@ export default {
         label: "Статья из книги"
       }, {
         value: "articleMagazine",
-        label: "Сататья из журнала"
+        label: "Статья из журнала"
       }, {
         value: "web",
         label: "Cайты в сети"

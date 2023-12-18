@@ -8,9 +8,7 @@
             :style="cssProps"
         >
           <div v-if="isEdit" class="list-container__item">
-            <span class="list-container__item__text">
-              {{ book.title }}, {{ book.authors }}
-            </span>
+            <ListItem :book="book" />
             <div class="list-container__item__actions">
               <ElButton
                   :type="book.configIsVisible ? 'primary': 'danger'"
@@ -40,7 +38,7 @@
             </div>
           </div>
           <template v-else>
-            {{ book.title }}, {{ book.authors }}
+            <ListItem :book="book" />
           </template>
         </li>
       </template>
@@ -51,9 +49,13 @@
 <script>
 import {mapActions, mapMutations} from "vuex";
 import {RouteNames} from "@/router/routes";
+import ListItem from "./ListItem.vue";
 
 export default {
   name: "ListContainer",
+  components: {
+    ListItem
+  },
   props: {
     books: {
       type: Array,
