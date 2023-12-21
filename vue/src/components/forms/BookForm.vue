@@ -12,6 +12,14 @@
     </div>
     <div v-if="form.type !== 'web' && form.type !== ''" class="book-form__input">
       <div v-for="(item, index) in form.authors" :key="index" >
+        <ElSelect v-model="authors[index]"  @change="(id) => chooseAuthor(id, index)" value-key="id" placeholder="Выберите автора из выпадающего списка">
+          <ElOption
+            v-for="author in getAuthors.filter(x => x.configIsVisible)" 
+            :key="author.id" 
+            :label="`${author.surname} ${author.name} ${author.patronymic}`" 
+            :value="author.id" 
+          />
+      </ElSelect>
         <AuthorForm v-model="form.authors[index]" :index="index" />
       </div>
       <ElButton
@@ -184,8 +192,9 @@ import AuthorForm from "@/components/forms/AuthorForm.vue";
 const emptyForm = {
   authors: [
     {
+      surname: "",
       name: "",
-      initials: ""
+      patronymic: ""
     }
   ],
   title: '',
@@ -215,12 +224,17 @@ export default {
   components: {AuthorForm},
   data () {
     return {
-      form: { ...emptyForm }
+      form: { ...emptyForm },
+      authors: []
     }
   },
   computed: {
     ...mapGetters('books', [
       'getBook',
+    ]),
+    ...mapGetters('authors', [
+      'getAuthors',
+      'getAuthor'
     ]),
     typeOptions () {
       return [{
@@ -283,6 +297,10 @@ export default {
         name: '',
         initials: ''
       })
+    },
+    chooseAuthor (id, index) {
+      const author = this.getAuthor(id)
+      this.form.authors[index] = { ...author }
     }
   }
 }

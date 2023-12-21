@@ -1,5 +1,6 @@
 import modals from './modals'
 import books from "@/store/books";
+import authors from "@/store/authors";
 
 export default {
   namespaced: true,
@@ -8,6 +9,7 @@ export default {
   mutations: {},
   modules: {
     modals,
-    books
+    books,
+    authors
   }
 }
