@@ -1,26 +1,14 @@
 <template>
   <div class="page">
     <div class="page__navigation">
-      <RouterLink v-if="$route.name !== RouteNames.HOME" :to="{ name: RouteNames.HOME } ">
-        <ElButton type="primary">Список</ElButton>
+      <RouterLink :to="{ name: RouteNames.HOME } ">
+        <ElButton type="primary" :plain="$route.name !== RouteNames.HOME">Список источников</ElButton>
       </RouterLink>
-      <RouterLink v-if="$route.name === RouteNames.HOME" :to="{ name: RouteNames.EDIT } ">
-        <ElButton type="primary">Редактирование</ElButton>
+      <RouterLink :to="{ name: RouteNames.AUTHORS } ">
+        <ElButton type="primary" :plain="$route.name !== RouteNames.AUTHORS">Список авторов</ElButton>
       </RouterLink>
-      <RouterLink v-if="$route.name !== RouteNames.BOOK_ADD" :to="{ name: RouteNames.BOOK_ADD } ">
-        <ElButton type="primary">Добавить источник</ElButton>
-      </RouterLink>
-      <RouterLink v-if="$route.name !== RouteNames.AUTHORS" :to="{ name: RouteNames.AUTHORS } ">
-        <ElButton type="primary">Список Авторов</ElButton>
-      </RouterLink>
-      <RouterLink v-if="$route.name !== RouteNames.AUTHORS_EDIT" :to="{ name: RouteNames.AUTHORS_EDIT } ">
-        <ElButton type="primary">Редактирование Авторов</ElButton>
-      </RouterLink>
-      <RouterLink v-if="$route.name !== RouteNames.AUTHOR_ADD" :to="{ name: RouteNames.AUTHOR_ADD } ">
-        <ElButton type="primary">Добавить автора</ElButton>
-      </RouterLink>
-      <RouterLink v-if="$route.name !== RouteNames.SETTINGS" :to="{ name: RouteNames.SETTINGS } ">
-        <ElButton type="primary">Настройки</ElButton>
+      <RouterLink :to="{ name: RouteNames.SETTINGS } ">
+        <ElButton type="primary" :plain="$route.name !== RouteNames.SETTINGS">Настройки</ElButton>
       </RouterLink>
     </div>
     <slot />

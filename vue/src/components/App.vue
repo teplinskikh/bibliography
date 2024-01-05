@@ -56,4 +56,16 @@ h2 {
 .d-flex {
   display: flex;
 }
+
+.flex-1 {
+  flex: 1;
+}
+
+.navigation {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-end;
+}
 </style>

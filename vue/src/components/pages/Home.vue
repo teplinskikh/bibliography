@@ -1,8 +1,11 @@
 <template>
   <PageLayout>
     <section>
-      <div>
-        <ElSelect v-model="typeOfList" placeholder="Выберите тип списка">
+      <div class="navigation">
+        <h2 class="flex-1">
+          Список источников
+        </h2>
+        <ElSelect v-model="typeOfList" size="small" placeholder="Выберите тип списка">
           <ElOption
             v-for="item in options"
             :key="item.value"
@@ -10,11 +13,21 @@
             :value="item.value"
           />
         </ElSelect>
+        <ElSwitch
+          v-model="editMode"
+          active-text="Режим редактирования"
+        />
+        <ElButton
+          type="primary"
+          size="small"
+          @click="() => openNewBiblioModal()"
+        >Добавить источник</ElButton>
       </div>
+
       <ListContainer
         :books="books"
-        :type-list="typeOfList"
-        :is-edit="$route.name===RouteNames.EDIT"
+        :type-list="editMode ? 'div' : typeOfList"
+        :is-edit="editMode"
       />
     </section>
   </PageLayout>
@@ -22,20 +35,23 @@
 
 <script>
 import {mapGetters} from "vuex";
-import { helpModal } from "@/mixins/modals";
+import { biblioModal } from "@/mixins/modals";
 import ListContainer from "@/components/parts/biblio/List.vue";
 import {RouteNames} from "@/router/routes";
 import PageLayout from "@/components/parts/PageLayout.vue";
 
 export default {
   name: 'HomePage',
-  mixins: [helpModal],
+  mixins: [
+    biblioModal
+  ],
   components: {
     PageLayout,
     ListContainer
   },
   data () {
     return {
+      editMode: false,
       typeOfList: 'ol'
     }
   },

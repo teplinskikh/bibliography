@@ -37,20 +37,31 @@ export default {
     ...mapGetters('books', [
       'getBooks'
     ]),
+    ...mapGetters('authors', [
+      'getAuthors'
+    ]),
     downloadRef () {
-      return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.getBooks));
+      return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
+        books: this.getBooks,
+        authors: this.getAuthors,
+      }));
     }
   },
   methods: {
     ...mapMutations('books', [
       'setBooks'
     ]),
+    ...mapMutations('authors', [
+      'setAuthors'
+    ]),
     setFile (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.setBooks(JSON.parse(e.target.result));
+        const { authors, books } = JSON.parse(e.target.result)
+        this.setBooks(books)
+        this.setAuthors(authors)
       }
-      reader.readAsText(file.raw);
+      reader.readAsText(file.raw)
     }
   }
 }

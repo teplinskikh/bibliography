@@ -1,30 +1,37 @@
 <template>
-  <div>
-    <span class="book-form__input__label">Фамимлия автора</span>
+  <div class="book-form">
+    <span class="book-form__label">Фамимлия</span>
     <ElInput
-        :value="author.surname"
-        placeholder="Укажите фамилию автора"
-        class="book-form__input__text"
-        @input="(v) => update({ surname: v })"
+      :value="author.surname"
+      placeholder="Фамилия"
+      class="book-form__input"
+      @input="(v) => update({ surname: v })"
     />
-    <span class="book-form__input__label">Имя автора</span>
+    <span class="book-form__label">Имя</span>
     <ElInput
-        :value="author.name"
-        placeholder="Укажите имя автора"
-        class="book-form__input__text"
-        @input="(v) => update({ name: v })"
+      :value="author.name"
+      placeholder="Имя"
+      class="book-form__input"
+      @input="(v) => update({ name: v })"
     />
-    <span class="book-form__input__label">Отчество автора</span>
+    <span class="book-form__label">Отчество</span>
     <ElInput
-        :value="author.patronymic"
-        placeholder="Укажите фамимлию автора"
-        class="book-form__input__text"
-        @input="(v) => update({ patronymic: v })"
+      :value="author.patronymic"
+      placeholder="Отчество"
+      class="book-form__input"
+      @input="(v) => update({ patronymic: v })"
     />
   </div>
 </template>
 
 <script>
+export const author = () => ({
+  surname: "",
+  name: "",
+  patronymic: "",
+  configIsVisible: true
+})
+
 export default {
   name: 'AuthorForm',
   model: {
@@ -35,13 +42,11 @@ export default {
     author: {
       type: Object,
       required: true,
-      default: () => {
-        return {
-          surname: "",
-          name: "",
-          patronymic: ""
-        }
-      }
+      default: () => ({
+        surname: "",
+        name: "",
+        patronymic: ""
+      })
     }
   },
   methods: {

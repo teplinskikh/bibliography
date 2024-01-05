@@ -1,60 +1,63 @@
 <template>
   <div class="list-container__wrapper">
-    <Component :is="typeList" class="list-container">
+    <Component v-if="books.length > 0" :is="typeList" class="list-container">
       <template v-for="book in books">
         <li
-            v-if="book.configIsVisible || isEdit"
-            :key="book.id"
-            :style="cssProps"
+          v-if="book.configIsVisible || isEdit"
+          :key="book.id"
+          :class="typeList === 'div' ? 'block list-container__item' : ''"
         >
-          <div v-if="isEdit" class="list-container__item">
-            <ListItem :book="book" />
+          <div v-if="isEdit" class="list-container__item" :class="{ edit: isEdit }">
+            <SourceItem :book="book" />
             <div class="list-container__item__actions">
               <ElButton
-                  :type="book.configIsVisible ? 'primary': 'danger'"
-                  icon="el-icon-view"
-                  size="mini"
-                  circle
-                  class="list-container__item__actions__button"
-                  @click="() => hideBook(book)"
+                :type="book.configIsVisible ? 'primary': 'danger'"
+                icon="el-icon-view"
+                size="mini"
+                circle
+                @click="() => hideBook(book)"
               />
-              <RouterLink :to="{ name: RouteNames.BOOK_EDIT, params: { id: book.id } } ">
-                <ElButton
-                    type="primary"
-                    icon="el-icon-edit"
-                    size="mini"
-                    circle
-                    class="list-container__item__actions__button"
-                />
-              </RouterLink>
               <ElButton
-                  type="danger"
-                  icon="el-icon-delete"
-                  size="mini"
-                  circle
-                  class="list-container__item__actions__button"
-                  @click="() => deleteBook(book)"
+                type="primary"
+                icon="el-icon-edit"
+                size="mini"
+                circle
+                @click="() => editBookHandler(book)"
+              />
+              <ElButton
+                type="danger"
+                icon="el-icon-delete"
+                size="mini"
+                circle
+                @click="() => deleteBook(book)"
               />
             </div>
           </div>
           <template v-else>
-            <ListItem :book="book" />
+            <SourceItem :book="book" />
           </template>
         </li>
       </template>
-    </component>
+    </Component>
+    <div v-else>
+      Список пуст
+    </div>
   </div>
 </template>
 
 <script>
-import {mapActions, mapMutations} from "vuex";
-import {RouteNames} from "@/router/routes";
-import ListItem from "./ListItem.vue";
+import { mapMutations } from "vuex";
+import { RouteNames } from "@/router/routes";
+import SourceItem from "./Source.vue";
+import { biblioModal } from "@/mixins/modals";
 
 export default {
   name: "ListContainer",
+  mixins: [
+    biblioModal
+  ],
   components: {
-    ListItem
+    SourceItem
   },
   props: {
     books: {
@@ -73,22 +76,18 @@ export default {
   computed: {
     RouteNames () {
       return RouteNames
-    },
-    cssProps () {
-      return this.typeList == "div" ? {
-        'display': 'block'
-      } : {}
     }
   },
   methods: {
-    ...mapActions('books', [
-      'removeBook'
-    ]),
     ...mapMutations('books', [
-      'editBook'
+      'editBook',
+      'removeBook'
     ]),
     deleteBook (book) {
       this.removeBook(book.id)
+    },
+    editBookHandler (book) {
+      this.openEditBiblioModal({ form: book })
     },
     hideBook (book) {
       book.configIsVisible = !book.configIsVisible
@@ -100,12 +99,33 @@ export default {
 
 <style scoped lang="less">
 .list-container {
+  text-align: justify;
+
   &__wrapper {
     padding: 10px;
   }
 
   &__item {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    min-height: 42px;
+
+    &.edit {
+      transition: 0.2s;
+
+      &:hover {
+        background-color: #f1f1f1;
+      }
+    }
+
+    &.block {
+      display: block;
+    }
 
     &__text {
       flex: 1;
@@ -113,10 +133,7 @@ export default {
 
     &__actions {
       display: flex;
-
-      &__button {
-        margin: 2px;
-      }
+      align-items: center;
     }
   }
 }
