@@ -1,0 +1,543 @@
+{
+  "books": [
+    {
+      "configIsVisible": true,
+      "type": "ARTICLE_CONFERENCE",
+      "authors": [
+        {
+          "surname": "Резников",
+          "name": "Константин",
+          "patronymic": "Георгиевич",
+          "configIsVisible": true,
+          "id": "1704193819055"
+        },
+        {
+          "surname": "медведев",
+          "name": "сергей",
+          "patronymic": "николаевич",
+          "configIsVisible": true,
+          "id": "1704361256679"
+        }
+      ],
+      "title": "Программное обеспечение для построения кинематических моделей",
+      "city": "Воронеж",
+      "publisher": "Научно-исследовательские публикации",
+      "year": "2020",
+      "pagesNum": "",
+      "pageStart": "492",
+      "pageEnd": "496",
+      "tags": [
+        "RINC",
+        "CONFERENCE"
+      ],
+      "conference": {
+        "naming": "Актуальные проблемы прикладной математики, информатики и механики",
+        "city": "Воронеж",
+        "date": "11–13 ноября 2019 года",
+        "organization": "ФГБОУ ВО «Воронежский государственный университет»",
+        "subnaming": "сборник трудов Международной научной конференции"
+      },
+      "magazine": {
+        "naming": "",
+        "numeration": ""
+      },
+      "pages": "",
+      "isbn": "",
+      "editionNum": "",
+      "typeBook": "",
+      "authorTitle": "",
+      "supervisor": "",
+      "university": "",
+      "fullInitials": "",
+      "scientificSpecialty": "",
+      "originName": "",
+      "magazineNum": "",
+      "url": "",
+      "viewDate": "",
+      "id": 1704400018198
+    },
+    {
+      "configIsVisible": true,
+      "type": "ARTICLE_CONFERENCE",
+      "authors": [
+        {
+          "surname": "Резников",
+          "name": "Константин",
+          "patronymic": "Георгиевич",
+          "configIsVisible": true,
+          "id": "1704193819055"
+        },
+        {
+          "surname": "медведев",
+          "name": "сергей",
+          "patronymic": "николаевич",
+          "configIsVisible": true,
+          "id": "1704361256679"
+        }
+      ],
+      "title": "Программное обеспечение с открытым исходным кодом для построения трехмерных поверхностей",
+      "city": "Воронеж",
+      "publisher": "Научная книга",
+      "year": "2020",
+      "pagesNum": "",
+      "pageStart": "206",
+      "pageEnd": "209",
+      "tags": [
+        "RINC",
+        "CONFERENCE"
+      ],
+      "conference": {
+        "naming": "Математика, информационные технологии, приложения",
+        "subnaming": "сборник трудов Межвузовской научной конференции молодых ученых и студентов",
+        "city": "Воронеж",
+        "date": "27 апреля 2020 года",
+        "organization": ""
+      },
+      "magazine": {
+        "naming": "",
+        "numeration": ""
+      },
+      "pages": "",
+      "isbn": "",
+      "editionNum": "",
+      "typeBook": "",
+      "authorTitle": "",
+      "supervisor": "",
+      "university": "",
+      "fullInitials": "",
+      "scientificSpecialty": "",
+      "originName": "",
+      "magazineNum": "",
+      "url": "",
+      "viewDate": "",
+      "id": 1704448503439
+    },
+    {
+      "configIsVisible": true,
+      "type": "ARTICLE_MAGAZINE",
+      "authors": [
+        {
+          "surname": "Резников",
+          "name": "Константин",
+          "patronymic": "Георгиевич",
+          "configIsVisible": true,
+          "id": "1704193819055"
+        },
+        {
+          "surname": "медведев",
+          "name": "сергей",
+          "patronymic": "николаевич",
+          "configIsVisible": true,
+          "id": "1704361256679"
+        }
+      ],
+      "title": "Разработка веб-приложения для визуализации кинематических поверхностей с использованием трассировки лучей",
+      "city": "Воронеж",
+      "publisher": "Издательский дом ВГУ",
+      "year": "2021",
+      "pagesNum": "",
+      "pageStart": "142",
+      "pageEnd": "161",
+      "tags": [
+        "RINC"
+      ],
+      "conference": {
+        "naming": "Вестник факультета прикладной математики, информатики и механики",
+        "subnaming": "",
+        "city": "",
+        "date": "",
+        "organization": ""
+      },
+      "magazine": {
+        "naming": "Вестник факультета прикладной математики, информатики и механики",
+        "numeration": "Сборник статей. Том. Выпуск 15"
+      },
+      "pages": "",
+      "isbn": "",
+      "editionNum": "",
+      "typeBook": "",
+      "authorTitle": "",
+      "supervisor": "",
+      "university": "",
+      "fullInitials": "",
+      "scientificSpecialty": "",
+      "originName": "",
+      "magazineNum": "",
+      "url": "",
+      "viewDate": "",
+      "id": 1704448609990
+    },
+    {
+      "configIsVisible": true,
+      "type": "ARTICLE_MAGAZINE",
+      "authors": [
+        {
+          "surname": "Резников",
+          "name": "Константин",
+          "patronymic": "Георгиевич",
+          "configIsVisible": true,
+          "id": "1704193819055"
+        },
+        {
+          "surname": "медведев",
+          "name": "сергей",
+          "patronymic": "николаевич",
+          "configIsVisible": true,
+          "id": "1704361256679"
+        }
+      ],
+      "title": "Разработка программного обеспечения для визуализации трехмерных поверхностей в веб-браузере",
+      "city": "Воронеж",
+      "publisher": "ВГТУ",
+      "year": "2021",
+      "pagesNum": "",
+      "pageStart": "13",
+      "pageEnd": "19",
+      "tags": [
+        "VAC"
+      ],
+      "conference": {
+        "naming": "",
+        "subnaming": "",
+        "city": "",
+        "date": "",
+        "organization": ""
+      },
+      "magazine": {
+        "naming": "Вестник ВГТУ",
+        "numeration": "Том 17, №6"
+      },
+      "pages": "",
+      "isbn": "",
+      "editionNum": "",
+      "typeBook": "",
+      "authorTitle": "",
+      "supervisor": "",
+      "university": "",
+      "fullInitials": "",
+      "scientificSpecialty": "",
+      "originName": "",
+      "magazineNum": "",
+      "url": "",
+      "viewDate": "",
+      "id": 1704451909321
+    },
+    {
+      "configIsVisible": true,
+      "type": "ARTICLE_CONFERENCE",
+      "authors": [
+        {
+          "surname": "Резников",
+          "name": "Константин",
+          "patronymic": "Георгиевич",
+          "configIsVisible": true,
+          "id": "1704193819055"
+        },
+        {
+          "surname": "медведев",
+          "name": "сергей",
+          "patronymic": "николаевич",
+          "configIsVisible": true,
+          "id": "1704361256679"
+        }
+      ],
+      "title": "Алгоритм построения полигональной сетки поверхности кинематической модели",
+      "city": "Воронеж",
+      "publisher": "Научно-исследовательские публикации",
+      "year": "2022",
+      "pagesNum": "",
+      "pageStart": "707",
+      "pageEnd": "711",
+      "tags": [
+        "RINC",
+        "CONFERENCE"
+      ],
+      "conference": {
+        "naming": "ктуальные проблемы прикладной математики, информатики и механики",
+        "subnaming": "сборник трудов Международной научной конференции",
+        "city": "Воронеж",
+        "date": "13–15 декабря 2021 года",
+        "organization": "ФГБОУ ВО «Воронежский государственный университет»"
+      },
+      "magazine": {
+        "naming": "",
+        "numeration": ""
+      },
+      "pages": "",
+      "isbn": "",
+      "editionNum": "",
+      "typeBook": "",
+      "authorTitle": "",
+      "supervisor": "",
+      "university": "",
+      "fullInitials": "",
+      "scientificSpecialty": "",
+      "originName": "",
+      "magazineNum": "",
+      "url": "",
+      "viewDate": "",
+      "id": 1704452138252
+    },
+    {
+      "configIsVisible": true,
+      "type": "ARTICLE_MAGAZINE",
+      "authors": [
+        {
+          "surname": "Резников",
+          "name": "Константин",
+          "patronymic": "Георгиевич",
+          "configIsVisible": true,
+          "id": "1704193819055"
+        },
+        {
+          "surname": "Подвальный",
+          "name": "Семен",
+          "patronymic": "Леонидович",
+          "configIsVisible": true,
+          "id": "1704200952258"
+        }
+      ],
+      "title": "Разработка программного обеспечения для визуализации процессов полимеризации",
+      "city": "Воронеж",
+      "publisher": "ВГТУ",
+      "year": "2023",
+      "pagesNum": "",
+      "pageStart": "7",
+      "pageEnd": "14",
+      "tags": [
+        "VAC"
+      ],
+      "conference": {
+        "naming": "",
+        "subnaming": "",
+        "city": "",
+        "date": "",
+        "organization": ""
+      },
+      "magazine": {
+        "naming": "Вестник ВГТУ",
+        "numeration": "Том 19, №2"
+      },
+      "pages": "",
+      "isbn": "",
+      "editionNum": "",
+      "typeBook": "",
+      "authorTitle": "",
+      "supervisor": "",
+      "university": "",
+      "fullInitials": "",
+      "scientificSpecialty": "",
+      "originName": "",
+      "magazineNum": "",
+      "url": "",
+      "viewDate": "",
+      "id": 1704452652033
+    },
+    {
+      "configIsVisible": true,
+      "type": "ARTICLE_CONFERENCE",
+      "authors": [
+        {
+          "surname": "Федорин",
+          "name": "Антон",
+          "patronymic": "Олегович",
+          "configIsVisible": true
+        },
+        {
+          "surname": "Резников",
+          "name": "Константин",
+          "patronymic": "Георгиевич",
+          "configIsVisible": true,
+          "id": "1704193819055"
+        }
+      ],
+      "title": "Проблемы формирования и конвертации документов на примере веб-приложения для управляющей компании",
+      "city": "Воронеж",
+      "publisher": "Научная книга",
+      "year": "2023",
+      "pagesNum": "",
+      "pageStart": "499",
+      "pageEnd": "506",
+      "tags": [
+        "RINC",
+        "CONFERENCE"
+      ],
+      "conference": {
+        "naming": "Математика, информационные технологии, приложения. Межвузовская научная конференция молодых учетных и студентов",
+        "subnaming": "",
+        "city": "Воронеж",
+        "date": "26 апреля 2023 года",
+        "organization": ""
+      },
+      "magazine": {
+        "naming": "",
+        "numeration": ""
+      },
+      "pages": "",
+      "isbn": "",
+      "editionNum": "",
+      "typeBook": "",
+      "authorTitle": "",
+      "supervisor": "",
+      "university": "",
+      "fullInitials": "",
+      "scientificSpecialty": "",
+      "originName": "",
+      "magazineNum": "",
+      "url": "",
+      "viewDate": "",
+      "id": 1704452795324
+    },
+    {
+      "configIsVisible": true,
+      "type": "ARTICLE_MAGAZINE",
+      "authors": [
+        {
+          "surname": "Резников",
+          "name": "Константин",
+          "patronymic": "Георгиевич",
+          "configIsVisible": true,
+          "id": "1704193819055"
+        },
+        {
+          "surname": "Подвальный",
+          "name": "Семен",
+          "patronymic": "Леонидович",
+          "configIsVisible": true,
+          "id": "1704200952258"
+        }
+      ],
+      "title": "Анализ проблем взаимодействия веб-приложения и сервера",
+      "city": "Воронеж",
+      "publisher": "Научная книга",
+      "year": "2023",
+      "pagesNum": "",
+      "pageStart": "131",
+      "pageEnd": "135",
+      "tags": [
+        "RINC",
+        "КОНФЕРЕНЦИЯ ФИТКБ ВГТУ"
+      ],
+      "conference": {
+        "naming": "",
+        "subnaming": "",
+        "city": "",
+        "date": "",
+        "organization": ""
+      },
+      "magazine": {
+        "naming": "Информационные технологии моделирования и управления",
+        "numeration": "Научно-технический журнал 2023 № 2 (132)"
+      },
+      "pages": "",
+      "isbn": "",
+      "editionNum": "",
+      "typeBook": "",
+      "authorTitle": "",
+      "supervisor": "",
+      "university": "",
+      "fullInitials": "",
+      "scientificSpecialty": "",
+      "originName": "",
+      "magazineNum": "",
+      "url": "",
+      "viewDate": "",
+      "id": 1704452983913
+    },
+    {
+      "configIsVisible": true,
+      "type": "TUTORIAL",
+      "authors": [
+        {
+          "surname": "Комарова",
+          "name": "Э",
+          "patronymic": "П",
+          "configIsVisible": true
+        },
+        {
+          "surname": "Федоров",
+          "name": "В",
+          "patronymic": "А",
+          "configIsVisible": true
+        },
+        {
+          "surname": "Резников",
+          "name": "Константин",
+          "patronymic": "Георгиевич",
+          "configIsVisible": true,
+          "id": "1704193819055"
+        },
+        {
+          "surname": "-",
+          "name": "",
+          "patronymic": "",
+          "configIsVisible": true
+        },
+        {
+          "surname": "-",
+          "name": "",
+          "patronymic": "",
+          "configIsVisible": true
+        }
+      ],
+      "title": "Цифровые технологии как модус контекстного образования",
+      "city": "Воронеж",
+      "publisher": "Научная книга",
+      "year": "2023",
+      "pagesNum": "124",
+      "pageStart": "",
+      "pageEnd": "",
+      "tags": [
+        "RINC"
+      ],
+      "conference": {
+        "naming": "",
+        "subnaming": "",
+        "city": "",
+        "date": "",
+        "organization": ""
+      },
+      "magazine": {
+        "naming": "",
+        "numeration": ""
+      },
+      "pages": "",
+      "isbn": "",
+      "editionNum": "",
+      "typeBook": "",
+      "authorTitle": "",
+      "supervisor": "",
+      "university": "",
+      "fullInitials": "",
+      "scientificSpecialty": "",
+      "originName": "",
+      "magazineNum": "",
+      "url": "",
+      "viewDate": "",
+      "id": 1704467655702
+    }
+  ],
+  "authors": [
+    {
+      "surname": "Резников",
+      "name": "Константин",
+      "patronymic": "Георгиевич",
+      "configIsVisible": true,
+      "id": "1704193819055"
+    },
+    {
+      "surname": "Подвальный",
+      "name": "Семен",
+      "patronymic": "Леонидович",
+      "configIsVisible": true,
+      "id": "1704200952258"
+    },
+    {
+      "surname": "медведев",
+      "name": "сергей",
+      "patronymic": "николаевич",
+      "configIsVisible": true,
+      "id": "1704361256679"
+    }
+  ]
+}

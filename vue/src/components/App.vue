@@ -57,35 +57,15 @@ h2 {
   display: flex;
 }
 
-.rcms {
+.flex-1 {
+  flex: 1;
+}
 
-  &-divider {
-
-    &-h {
-      width: 100%;
-      height: @sizeBorderDefault;
-      background-color: @cBaseTwo;
-    }
-
-    &-v {
-
-    }
-  }
-
-  &-loading {
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1;
-      background: rgba(100, 100, 100, 0.5);
-      cursor: wait;
-    }
-  }
+.navigation {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-end;
 }
 </style>
