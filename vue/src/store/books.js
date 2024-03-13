@@ -11,7 +11,17 @@ export default {
   },
   getters: {
     getBooks: (state) => state.books,
-    getBook: (state) => (id) => state.books.find((book) => book.id === id)
+    getBook: (state) => (id) => state.books.find((book) => book.id === id),
+    filteredAndSortedBooks: (state) => (selectedTypes, sortFunction) => {
+      let filteredBooks = [...state.books]
+      if (selectedTypes.length > 0) {
+        filteredBooks = filteredBooks.filter(book => selectedTypes.includes(book.type))
+      }
+      if (sortFunction != null) {
+        filteredBooks.sort(sortFunction)
+      }
+      return filteredBooks
+    } 
   },
   mutations: {
     setBooks: (state, payload) => {
@@ -24,7 +34,7 @@ export default {
       syncStateBooks(state)
     },
     removeBook: (state, payload) => {
-      state.books = state.books.filter((book) => book.id !== payload);
+      state.books = state.books.filter((book) => book.id !== payload)
       syncStateBooks(state)
     },
     editBook: (state, payload) => {
