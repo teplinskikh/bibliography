@@ -241,6 +241,25 @@
         />
       </div>
 
+      <div class="book-form__input"> 
+        <span class="book-form__input__label">Имя фрагмента файла</span>
+        <ElInput
+          :value="book.fragmentFileName"
+          placeholder="Имя фрагмента файла"
+          class="book-form__input__text"
+          @input="(v) => update({ fragmentFileName: v })"
+        />
+      </div>
+      <div class="book-form__input">
+        <span class="book-form__input__label">Имя файла</span>
+        <ElInput
+          :value="book.fullFileName"
+          placeholder="Имя файла"
+          class="book-form__input__text"
+          @input="(v) => update({ fullFileName: v })"
+        />
+      </div>
+
       <!-- FOR ALL -->
       <div class="book-form__input">
         <span class="book-form__input__label">Особые отметки</span>
@@ -334,6 +353,9 @@ export const biblio = () => ({
     naming: '', // название журнала
     numeration: '', // нумерация издания (том, номер в году, порядковый номер)
   },
+
+  fragmentFileName: '', // название фрагмента файла
+  fullFileName: '', // название полного файла
 
 })
 
