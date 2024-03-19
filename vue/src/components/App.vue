@@ -61,11 +61,19 @@ h2 {
   flex: 1;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .navigation {
   padding: 20px;
   display: flex;
   gap: 20px;
   align-items: center;
   justify-content: flex-end;
+}
+
+.el-button+.el-button {
+  margin: 0 !important;
 }
 </style>

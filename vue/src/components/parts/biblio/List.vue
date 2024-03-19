@@ -36,9 +36,9 @@
           <div v-else class="list-container__item">
             <SourceItem :book="book" />
             <div v-if="typeList === 'div'" class="list-container__item__actions">
-              <el-tooltip content="Скачать фрагмент" placement="top">
+              <ElTooltip v-if="book.fragmentFileName" content="Скачать фрагмент" placement="top">
                 <a
-                  :href="getFileLink(`fragment/${book.fullFileName}`)"
+                  :href="getFileLink(`fragment/${book.fragmentFileName}`)"
                   download
                 >
                   <ElButton
@@ -49,12 +49,12 @@
                     circle
                   />
                 </a>
-              </el-tooltip>
-              <el-tooltip content="Скачать полный файл" placement="top">
+              </ElTooltip>
+              <ElTooltip v-if="book.fullFileName" content="Скачать полный файл" placement="top">
                 <a
                   :href="getFileLink(`full/${book.fullFileName}`)"
                   download
-                >  
+                >
                   <ElButton
                     type="primary"
                     icon="el-icon-download"
@@ -62,7 +62,7 @@
                     circle
                   />
                 </a>
-              </el-tooltip>
+              </ElTooltip>
             </div>
           </div>
         </li>
@@ -122,11 +122,8 @@ export default {
       book.configIsVisible = !book.configIsVisible
       this.editBook(book)
     },
-    getFileLink(lnk){
-      if (lnk === 'full/' || lnk == 'fragment/')
-        return null
-      else 
-        return `@/assets/${lnk}`
+    getFileLink (lnk) {
+      return `/download/${ lnk }`
     }
   }
 }
@@ -169,6 +166,7 @@ export default {
     &__actions {
       display: flex;
       align-items: center;
+      gap: 10px;
     }
   }
 }

@@ -8,13 +8,14 @@
         <ElSelect
           v-model="typeOfList"
           size="small"
-          placeholder="Выберите тип списка">
-            <ElOption
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
+          placeholder="Выберите тип списка"
+        >
+          <ElOption
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
         </ElSelect>
         <ElSwitch
           v-model="editMode"
@@ -30,50 +31,53 @@
         <div class="order--sort">
           <ElSelect
             v-model="sortBy"
+            clearable
             size="small"
             placeholder="Сортировать по"
             @change="() => getSortedBooks(sortBy)"
-            >
-              <ElOption label="По типу" value="type" />
-              <ElOption label="По автору" value="author" />
-              <ElOption label="По названию" value="title" />
-              <ElOption label="По году" value="year" />
+          >
+            <ElOption label="По типу" value="type" />
+            <ElOption label="По автору" value="author" />
+            <ElOption label="По названию" value="title" />
+            <ElOption label="По году" value="year" />
           </ElSelect>
         </div>
         <div class="order--filter">
           <ElSelect
             v-model="selectedTypes"
             multiple
+            clearable
             size="small"
             placeholder="Выберите типы источников"
             @change="() => filteredAndSortedBooks(selectedTypes)"
             collapse-tags
-            >
-              <ElOption
-                v-for="(value, key) in LABEL_SOURCE_TYPE"
-                :key="key"
-                :label="`${value}`"
-                :value="key"
-              />
+          >
+            <ElOption
+              v-for="(value, key) in LABEL_SOURCE_TYPE"
+              :key="key"
+              :label="`${value}`"
+              :value="key"
+            />
           </ElSelect>
         </div>
         <div class="order--group">
           <ElSelect
             v-model="groupField"
             size="small"
+            clearable
             placeholder="Группировать по"
             @change="() => groupBooks()"
-            >
-              <ElOption label="Автор" value="author" />
-              <ElOption label="Год" value="year" />
-              <ElOption label="Отметки" value="tags" />
-              <ElOption label="Город" value="city" />
+          >
+            <ElOption label="Автор" value="author" />
+            <ElOption label="Год" value="year" />
+            <ElOption label="Отметки" value="tags" />
+            <ElOption label="Город" value="city" />
           </ElSelect>
         </div>
       </div>
       <div v-if="groupedBooks.length">
-        <div class="caption" v-for="(group, index) in groupedBooks" :key="index">
-          <h3>{{ group.label }}</h3>
+        <div v-for="(group, index) in groupedBooks" :key="index">
+          <h3 class="text-center">{{ group.label }}</h3>
           <ListContainer :books="group.books" :type-list="editMode ? 'div' : typeOfList" :is-edit="editMode" />
         </div>
       </div>
@@ -140,7 +144,7 @@ export default {
           const authorB = (b.authors && b.authors.length > 0) ? b.authors[0].surname : ''
           return authorA.localeCompare(authorB)
         },
-        title: (a, b) => a.title.localeCompare(b.title), 
+        title: (a, b) => a.title.localeCompare(b.title),
         year: (a, b) => a.year - b.year
       }
     },

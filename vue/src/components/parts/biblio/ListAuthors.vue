@@ -118,6 +118,7 @@ export default {
     &__actions {
       display: flex;
       align-items: center;
+      gap: 10px;
     }
   }
 }
