@@ -2,7 +2,7 @@
   <div class="book-form">
     <div class="book-form__input">
       <span class="book-form__label">Тип источника</span>
-      <ElSelect
+      <ElSelect class="book-form__select"
         :value="book.type"
         placeholder="Выбрать тип источника"
         @change="(v) => update({ type: v })"
@@ -143,55 +143,57 @@
         </div>
       </div>
 
-      <div
-        v-if="
-          book.type === sourceType.ARTICLE_CONFERENCE ||
-          book.type === sourceType.TUTORIAL ||
-          book.type === sourceType.ARTICLE_MAGAZINE
-        "
-        class="book-form__input"
-      >
-        <span class="book-form__input__label">Город издания</span>
-        <ElInput
-          :value="book.city"
-          placeholder="Город издания"
-          class="book-form__input__text"
-          @input="(v) => update({ city: v })"
-        />
-      </div>
+      <div class="book-form__container">
+        <div
+          v-if="
+            book.type === sourceType.ARTICLE_CONFERENCE ||
+            book.type === sourceType.TUTORIAL ||
+            book.type === sourceType.ARTICLE_MAGAZINE
+          "
+          class="book-form__input"
+        >
+          <span class="book-form__input__label">Город издания</span>
+          <ElInput
+            :value="book.city"
+            placeholder="Город издания"
+            class="book-form__input__text"
+            @input="(v) => update({ city: v })"
+          />
+        </div>
 
-      <div
-        v-if="
-          book.type === sourceType.ARTICLE_CONFERENCE ||
-          book.type === sourceType.TUTORIAL ||
-          book.type === sourceType.ARTICLE_MAGAZINE
-        "
-        class="book-form__input"
-      >
-        <span class="book-form__input__label">Издательство</span>
-        <ElInput
-          :value="book.publisher"
-          placeholder="Издательство"
-          class="book-form__input__text"
-          @input="(v) => update({ publisher: v })"
-        />
-      </div>
+        <div
+          v-if="
+            book.type === sourceType.ARTICLE_CONFERENCE ||
+            book.type === sourceType.TUTORIAL ||
+            book.type === sourceType.ARTICLE_MAGAZINE
+          "
+          class="book-form__input"
+        >
+          <span class="book-form__input__label">Издательство</span>
+          <ElInput
+            :value="book.publisher"
+            placeholder="Издательство"
+            class="book-form__input__text"
+            @input="(v) => update({ publisher: v })"
+          />
+        </div>
 
-      <div
-        v-if="
-          book.type === sourceType.ARTICLE_CONFERENCE ||
-          book.type === sourceType.TUTORIAL ||
-          book.type === sourceType.ARTICLE_MAGAZINE
-        "
-        class="book-form__input"
-      >
-        <span class="book-form__input__label">Год издания</span>
-        <ElInput
-          :value="book.year"
-          placeholder="Год издания"
-          class="book-form__input__text"
-          @input="(v) => update({ year: v })"
-        />
+        <div
+          v-if="
+            book.type === sourceType.ARTICLE_CONFERENCE ||
+            book.type === sourceType.TUTORIAL ||
+            book.type === sourceType.ARTICLE_MAGAZINE
+          "
+          class="book-form__input"
+        >
+          <span class="book-form__input__label">Год издания</span>
+          <ElInput
+            :value="book.year"
+            placeholder="Год издания"
+            class="book-form__input__text"
+            @input="(v) => update({ year: v })"
+          />
+        </div>
       </div>
 
       <div
@@ -484,6 +486,14 @@ export default {
   &__label {
     display: flex;
     place-content: center;
+  }
+
+  &__select {
+    width: 100%;
+  }
+
+  &__container {
+    display: flex;
   }
 }
 </style>

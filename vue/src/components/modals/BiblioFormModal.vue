@@ -1,9 +1,12 @@
 <template>
   <ModalComponent>
     <div class="p-16">
-      <button @click="() => $emit('close')">
-        Close
-      </button>
+      <div class="information-panel">
+        <h1>{{ componentName }}</h1>
+        <button class="information-panel__close-button" @click="() => $emit('close')">
+          ✕
+        </button>
+      </div>
       <div>
         <BookForm v-model="form" />
 
@@ -46,6 +49,11 @@ export default {
       }
     }
   },
+  computed: {
+    componentName() {
+      return this.$options.name || ""
+    }
+  },
   methods: {
     ...mapMutations('books', [
       'addBook',
@@ -63,3 +71,21 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="less">
+  .information-panel {
+    display: flex;
+    justify-content: space-between;
+
+    &__close-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        color: @cBaseFive;
+      }
+    }
+  }
+
+</style>
