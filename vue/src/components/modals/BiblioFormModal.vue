@@ -73,19 +73,19 @@ export default {
 </script>
 
 <style scoped lang="less">
-  .information-panel {
-    display: flex;
-    justify-content: space-between;
+.information-panel {
+  display: flex;
+  justify-content: space-between;
 
-    &__close-button {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
+  &__close-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 
-      &:hover {
-        color: @cBaseFive;
-      }
+    &:hover {
+      color: @cBaseFive;
     }
   }
+}
 
 </style>

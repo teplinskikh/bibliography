@@ -20,7 +20,8 @@ export default {
         case SOURCE_TYPE.ARTICLE_CONFERENCE: return this.strArticleConference()
         case SOURCE_TYPE.ARTICLE_MAGAZINE: return this.strArticleMagazine()
         case SOURCE_TYPE.TUTORIAL: return this.strTutorial()
-        // case SOURCE_TYPE.BOOK: return this.strBook
+        case SOURCE_TYPE.BOOK: return this.strBook()
+        case SOURCE_TYPE.PATENT: return this.strPatent()
         // case SOURCE_TYPE.WEB: return this.strWeb
         // case SOURCE_TYPE.ARTICLE_MAGAZINE: return this.strArticleMagazine
         // case SOURCE_TYPE.ARTICLE_WEB: return this.strArticleWeb
@@ -281,6 +282,122 @@ export default {
       }
 
       ar[ar.length-1] += '.'
+
+      return ar.join(' ')
+    },
+    strBook () {
+      const ar = []
+
+      if (this.book.authors.length > 0) {
+        ar.push(this.authorStringShort(this.book.authors[0]))
+      }
+
+      if (this.book.title) {
+        ar.push(this.book.title)
+      }
+
+      if (this.book.title && this.book.authors.length > 0) {
+        ar.push('/')
+      }
+
+      if (this.book.authors.length > 0) {
+        ar.push(this.getStrAuthors(this.book.authors))
+      }
+
+      if(this.book.volume.edition) {
+        ar.push(this.book.volume.edition + '-е изд.')
+      }
+
+      if (this.book.title && this.book.city) {
+        ar.push('–')
+      }
+
+      if (this.book.city) {
+        ar.push(this.book.city)
+      }
+
+      if (this.book.city && this.book.publisher) {
+        ar[ar.length-1] += ':'
+      }
+
+      if (this.book.publisher) {
+        ar.push(this.book.publisher)
+      }
+
+      if (this.book.publisher && this.book.year) {
+        ar[ar.length-1] += ','
+      }
+
+      if (this.book.year) {
+        ar.push(this.book.year + '.')
+      }
+
+      if (this.book.year && this.book.pageStart && this.book.pageEnd) {
+        ar.push('– С.')
+      }
+
+      if (this.book.pageStart && this.book.pageEnd) {
+        ar.push(`${this.book.pageStart}-${this.book.pageEnd}`)
+      }
+
+      ar[ar.length-1] += '.'
+
+      return ar.join(' ')
+    },
+    strPatent () {
+      const ar = []
+
+      if (this.book.patent) {
+        const patent = this.book.patent
+        
+        ar.push('Патент')
+
+        if (patent.registrationNumber) {
+          ar.push('№')
+          ar.push(patent.registrationNumber + '.')
+        }
+
+        if (this.book.title) {
+          ar.push(this.book.title)
+          ar.push(':')
+        }
+
+        if(patent.applicationNumber) {
+          ar.push('№')
+          ar.push(patent.applicationNumber)
+        }
+
+        if(patent.applicationDate) {
+          ar.push(':')
+          ar.push('заявл.')
+          ar.push(patent.applicationDate)
+        }
+
+        if(patent.publicationDate) {
+          ar.push(':')
+          ar.push('опубл.')
+          ar.push(patent.publicationDate)
+        }
+
+        if (this.book.authors.length > 0) {
+          ar.push('/')
+          ar.push(this.authorStringShort(this.book.authors[0]))
+          ar.push(';')
+        }
+
+        if (patent.holder) {
+          ar.push('заявитель, патентообладатель')
+          ar.push(patent.holder)
+        }
+        
+        if (this.book.pagesNum) {
+          ar.push('–')
+          ar.push(this.book.pagesNum)
+          ar.push('с')
+        }
+
+        ar[ar.length-1] += '.'
+      }
 
       return ar.join(' ')
     },

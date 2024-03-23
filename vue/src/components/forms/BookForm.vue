@@ -2,7 +2,8 @@
   <div class="book-form">
     <div class="book-form__input">
       <span class="book-form__label">Тип источника</span>
-      <ElSelect class="book-form__select"
+      <ElSelect 
+        class="book-form__select"
         :value="book.type"
         placeholder="Выбрать тип источника"
         @change="(v) => update({ type: v })"
@@ -21,7 +22,9 @@
         v-if="
           book.type === sourceType.ARTICLE_CONFERENCE ||
           book.type === sourceType.TUTORIAL ||
-          book.type === sourceType.ARTICLE_MAGAZINE
+          book.type === sourceType.ARTICLE_MAGAZINE ||
+          book.type === sourceType.BOOK ||
+          book.type === sourceType.PATENT
         "
         class="book-form__input book-form__inner"
       >
@@ -61,7 +64,9 @@
         v-if="
           book.type === sourceType.ARTICLE_CONFERENCE ||
           book.type === sourceType.TUTORIAL ||
-          book.type === sourceType.ARTICLE_MAGAZINE
+          book.type === sourceType.ARTICLE_MAGAZINE ||
+          book.type === sourceType.BOOK ||
+          book.type === sourceType.PATENT
         "
         class="book-form__input"
       >
@@ -72,6 +77,18 @@
           class="book-form__input__text"
           @input="(v) => update({ title: v })"
         />
+      </div>
+
+      <div v-if="book.type === sourceType.BOOK" class="book-form__inner">
+        <div class="book-form__input">
+          <span class="book-form__input__label">Издание</span>
+          <ElInput
+            :value="book.volume.edition"
+            placeholder="Издание"
+            class="book-form__input__text"
+            @input="(v) => updateDeep({ edition: v }, 'volume')"
+          />
+        </div>
       </div>
 
       <div v-if="book.type === sourceType.ARTICLE_CONFERENCE" class="book-form__inner">
@@ -143,12 +160,67 @@
         </div>
       </div>
 
+      <div v-if="book.type === sourceType.PATENT" class="book-form__inner">
+        <div class="book-form__input">
+          <span class="book-form__input__label">Регистрационный номер патента</span>
+          <ElInput
+            :value="book.patent.registrationNumber"
+            placeholder="Регистрационный номер патента"
+            class="book-form__input__text"
+            @input="(v) => updateDeep({ registrationNumber: v }, 'patent')"
+          />
+        </div>
+        <div class="book-form__input">
+          <span class="book-form__input__label">Регистрационный номер заявки</span>
+          <ElInput
+            :value="book.patent.applicationNumber"
+            placeholder="Регистрационный номер заявки"
+            class="book-form__input__text"
+            @input="(v) => updateDeep({ applicationNumber: v }, 'patent')"
+          />
+        </div>
+        <div class="book-form__container">
+          <div class="book-form__date">
+            <span class="book-form__label">Дата заявления</span>
+            <ElDatePicker class="book-form__date__picker"
+              :value="book.patent.applicationDate"
+              type="date"
+              placeholder="Дата заявления"
+              format="dd.MM.yyyy"
+              value-format="dd.MM.yyyy"
+              @input="(v) => updateDeep({ applicationDate: v }, 'patent')"
+            />
+          </div>
+          <div class="book-form__date">
+            <span class="book-form__label">Дата опубликования</span>
+            <ElDatePicker class="book-form__date__picker"
+              :value="book.patent.publicationDate"
+              type="date"
+              placeholder="Дата опубликования"
+              format="dd.MM.yyyy"
+              value-format="dd.MM.yyyy"
+              @input="(v) => updateDeep({ publicationDate: v }, 'patent')"
+            />
+          </div>
+        </div>
+        <div class="book-form__input">
+          <span class="book-form__input__label">Заявитель, патентобладатель</span>
+          <ElInput
+            :value="book.patent.holder"
+            placeholder="Заявитель, патентобладатель"
+            class="book-form__input__text"
+            @input="(v) => updateDeep({ holder: v }, 'patent')"
+          />
+        </div>
+      </div>
+
       <div class="book-form__container">
         <div
           v-if="
             book.type === sourceType.ARTICLE_CONFERENCE ||
             book.type === sourceType.TUTORIAL ||
-            book.type === sourceType.ARTICLE_MAGAZINE
+            book.type === sourceType.ARTICLE_MAGAZINE ||
+            book.type === sourceType.BOOK
           "
           class="book-form__input"
         >
@@ -165,7 +237,8 @@
           v-if="
             book.type === sourceType.ARTICLE_CONFERENCE ||
             book.type === sourceType.TUTORIAL ||
-            book.type === sourceType.ARTICLE_MAGAZINE
+            book.type === sourceType.ARTICLE_MAGAZINE ||
+            book.type === sourceType.BOOK
           "
           class="book-form__input"
         >
@@ -182,7 +255,8 @@
           v-if="
             book.type === sourceType.ARTICLE_CONFERENCE ||
             book.type === sourceType.TUTORIAL ||
-            book.type === sourceType.ARTICLE_MAGAZINE
+            book.type === sourceType.ARTICLE_MAGAZINE ||
+            book.type === sourceType.BOOK
           "
           class="book-form__input"
         >
@@ -199,7 +273,8 @@
       <div
         v-if="
           book.type === sourceType.ARTICLE_CONFERENCE ||
-          book.type === sourceType.ARTICLE_MAGAZINE
+          book.type === sourceType.ARTICLE_MAGAZINE ||
+          book.type === sourceType.BOOK
         "
         class="book-form__input"
       >
@@ -215,7 +290,8 @@
       <div
         v-if="
           book.type === sourceType.ARTICLE_CONFERENCE ||
-          book.type === sourceType.ARTICLE_MAGAZINE
+          book.type === sourceType.ARTICLE_MAGAZINE ||
+          book.type === sourceType.BOOK
         "
         class="book-form__input"
       >
@@ -230,7 +306,8 @@
 
       <div
         v-if="
-          book.type === sourceType.TUTORIAL
+          book.type === sourceType.TUTORIAL ||
+          book.type === sourceType.PATENT
         "
         class="book-form__input"
       >
@@ -308,7 +385,8 @@ export const LABEL_TAG = {
 }
 
 export const SOURCE_TYPE = {
-  // BOOK: 'BOOK',
+  BOOK: 'BOOK',
+  PATENT: 'PATENT',
   // WEB: 'WEB',
   ARTICLE_MAGAZINE: 'ARTICLE_MAGAZINE',
   // ARTICLE_WEB: 'ARTICLE_WEB',
@@ -317,7 +395,8 @@ export const SOURCE_TYPE = {
 }
 
 export const LABEL_SOURCE_TYPE = {
-  // [SOURCE_TYPE.BOOK]: 'Книга',
+  [SOURCE_TYPE.BOOK]: 'Книга',
+  [SOURCE_TYPE.PATENT]: 'Патент',
   // [SOURCE_TYPE.WEB]: 'Сайт',
   // [SOURCE_TYPE.ARTICLE_WEB]: 'Статья на сайте',
   [SOURCE_TYPE.ARTICLE_MAGAZINE]: 'Статья в журнале',
@@ -354,6 +433,18 @@ export const biblio = () => ({
   magazine: { // информация о журнале
     naming: '', // название журнала
     numeration: '', // нумерация издания (том, номер в году, порядковый номер)
+  },
+
+  volume: { //информация о книге
+    edition: '', //издание книги
+  },
+
+  patent: { //информация о патенте
+    registrationNumber: '', //регистрационный номер патента
+    applicationNumver: '', //номер заявки
+    applicationDate: '', //дата заявления
+    publicationDate: '', //дата опубликования
+    holder: '', //патентообладатель
   },
 
   fragmentFileName: '', // название фрагмента файла
@@ -494,6 +585,10 @@ export default {
 
   &__container {
     display: flex;
+  }
+
+  &__date {
+    flex: 1;
   }
 }
 </style>
