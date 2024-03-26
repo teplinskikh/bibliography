@@ -556,6 +556,7 @@ export default {
   padding: 3px;
   margin-bottom: 5px;
   text-align: center;
+  font-family: @ffOne;
 
   &__inner {
     background-color: #dddddd;
@@ -585,6 +586,7 @@ export default {
 
   &__container {
     display: flex;
+    gap: 10px;
   }
 
   &__date {
